@@ -1,0 +1,27 @@
+######## Permanent rules for platform common ########
+
+# Ignoring violations by untrusted_app except for SOMC applications
++,u:r:untrusted_app:s0*,,,,,,,,
+-,u:r:untrusted_app:s0*,,,com.sony*,,,,,
+
+# Ignoring shell operations via ADB as default setting
++,,,,,,adbd,,,
++,,,,,,/sbin/adbd,,,
+
+# DMS06785938 Ignoring violations by vold for read action on storage_stub_file
++,u:r:vold:s0,u:object_r:storage_stub_file:s0,,,,,,,read
+
+# DMS06785938 Ignoring violations by system_app for getattr action on storage_stub_file
++,u:r:system_app:s0,u:object_r:storage_stub_file:s0,,,,,,,getattr
+
+# DMS06771403
++,u:r:system_server:s0,u:object_r:storage_stub_file:s0,dir,,,,,,getattr
+
+######## Permanent rules for variant specific ########
+
+
+######## Temporary rules for platform common ########
+# XXX: These rules shall be removed before ship.
+
+######## Temporary rules for variant specific ########
+# XXX: These rules shall be removed before ship.

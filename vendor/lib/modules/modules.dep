@@ -1,0 +1,27 @@
+/vendor/lib/modules/powerkey_forcecrash.ko:
+/vendor/lib/modules/ssw49501.ko:
+/vendor/lib/modules/snd-soc-sdm845.ko: /vendor/lib/modules/snd-soc-wcd934x.ko /vendor/lib/modules/swr-wcd-ctrl.ko /vendor/lib/modules/snd-soc-wcd-mbhc.ko /vendor/lib/modules/snd-soc-wcd9xxx.ko /vendor/lib/modules/snd-soc-wsa881x.ko /vendor/lib/modules/wcd-core.ko
+/vendor/lib/modules/ssw_mon.ko: /vendor/lib/modules/ssw49501.ko
+/vendor/lib/modules/llcc_perfmon.ko:
+/vendor/lib/modules/snd-soc-wcd9xxx.ko: /vendor/lib/modules/wcd-core.ko
+/vendor/lib/modules/mpq-adapter.ko:
+/vendor/lib/modules/msm_11ad_proxy.ko:
+/vendor/lib/modules/wcd-core.ko:
+/vendor/lib/modules/snd-soc-wcd-mbhc.ko: /vendor/lib/modules/wcd-core.ko
+/vendor/lib/modules/snd-soc-wcd934x.ko: /vendor/lib/modules/swr-wcd-ctrl.ko /vendor/lib/modules/snd-soc-wcd-mbhc.ko /vendor/lib/modules/snd-soc-wcd9xxx.ko /vendor/lib/modules/wcd-core.ko
+/vendor/lib/modules/sony_camera.ko:
+/vendor/lib/modules/fpc1145_platform.ko:
+/vendor/lib/modules/tof_sensor.ko:
+/vendor/lib/modules/rdbg.ko:
+/vendor/lib/modules/nxp_pn553_nfc.ko:
+/vendor/lib/modules/tcs3490.ko:
+/vendor/lib/modules/snd-soc-wsa881x.ko: /vendor/lib/modules/wcd-core.ko
+/vendor/lib/modules/wil6210.ko: /vendor/lib/modules/msm_11ad_proxy.ko
+/vendor/lib/modules/snd-soc-wcd-spi.ko:
+/vendor/lib/modules/qca_cld3_wlan.ko:
+/vendor/lib/modules/swr-wcd-ctrl.ko:
+/vendor/lib/modules/texfat.ko:
+/vendor/lib/modules/tspp.ko:
+/vendor/lib/modules/pinctrl-wcd.ko:
+/vendor/lib/modules/mpq-dmx-hw-plugin.ko: /vendor/lib/modules/tspp.ko /vendor/lib/modules/mpq-adapter.ko
+/vendor/lib/modules/wcd-dsp-glink.ko:

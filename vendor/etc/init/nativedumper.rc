@@ -1,0 +1,7 @@
+#SONY: NativeDumper for Treble
+service nativedumper_vendor /vendor/bin/nativedumper
+    class main
+    user root
+    group root system
+    seclabel u:r:nativedumper:s0
+

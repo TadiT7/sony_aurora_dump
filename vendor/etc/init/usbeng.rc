@@ -1,0 +1,7 @@
+# Start usbeng
+service usbeng /vendor/bin/usbeng
+    user system
+    group system
+    class late_start
+    oneshot
+    seclabel u:r:usbeng:s0

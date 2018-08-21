@@ -1,0 +1,395 @@
+# Copyright (c) 2017 Sony Mobile Communications Inc.
+#
+# init.sony-platform.rc
+#
+
+on early-init
+    write /sys/module/msm_rtb/parameters/enable 0
+    write /sys/module/dm_verity/parameters/panic_on_err 1
+
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ \
+        fpc1145_platform \
+        powerkey_forcecrash
+
+    # load camera kernel modules
+    insmod /vendor/lib/modules/sony_camera.ko
+    insmod /vendor/lib/modules/tof_sensor.ko
+    insmod /vendor/lib/modules/tcs3490.ko
+    
+
+    
+    write /sys/devices/platform/soc/soc:fpc1145/uevent add
+    # change the compression algorithm for zRAM
+    write /sys/block/zram0/comp_algorithm lz4
+
+    
+
+    # Change reset behavior to warm reset
+    
+
+    # Adjust threshold for memory watermarks.
+    write /proc/sys/vm/watermark_scale_factor 100
+
+on init
+   # Load persistent dm-verity state
+    verity_load_state
+
+    # SONY: Start the TrimArea Daemon. It must be started before fota-ua
+    wait /dev/block/sda1
+    chown oem_2997 oem_2997 /dev/block/sda1
+    chmod 0770 /dev/block/sda1
+    class_start trimarea
+    exec u:r:tad:s0 system -- /vendor/bin/wait4tad
+
+    # SONY: checkabortedflash should be started as early as possible.
+    # Dependant on the TrimArea Daemon.
+    exec - root root oem_2993 -- /vendor/bin/checkabortedflash
+
+    #Enable Bluetooth HFP 1.7
+    setprop ro.bluetooth.hfp.ver 1.7
+
+    # Bluetooth address setting
+    setprop ro.bt.bdaddr_path "/data/etc/bluetooth_bdaddr"
+
+    # Enable panic on out of memory
+    
+
+    write /proc/sys/vm/swappiness 100
+
+on fs
+    write /sys/devices/platform/soc/8804000.sdhci/mmc_host/mmc0/clkgate_delay 1
+
+on post-fs
+    # backlight
+    chown system system /sys/class/leds/wled/area_count
+    chown system system /sys/class/leds/wled/bl_scale
+    chown system system /sys/class/leds/wled/en_cabc
+
+    # led RGB
+    chown system system /sys/class/leds/rgb/sync_state
+    chown system system /sys/class/leds/rgb/start_blink
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/lut_pwm
+    chown system system /sys/class/leds/red/step_duration
+    chown system system /sys/class/leds/red/pause_lo_multi
+    chown system system /sys/class/leds/red/pause_hi_multi
+    chown system system /sys/class/leds/red/max_single_brightness
+    chown system system /sys/class/leds/red/max_mix_brightness
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/lut_pwm
+    chown system system /sys/class/leds/green/step_duration
+    chown system system /sys/class/leds/green/pause_lo_multi
+    chown system system /sys/class/leds/green/pause_hi_multi
+    chown system system /sys/class/leds/green/max_single_brightness
+    chown system system /sys/class/leds/green/max_mix_brightness
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/lut_pwm
+    chown system system /sys/class/leds/blue/step_duration
+    chown system system /sys/class/leds/blue/pause_lo_multi
+    chown system system /sys/class/leds/blue/pause_hi_multi
+    chown system system /sys/class/leds/blue/max_single_brightness
+    chown system system /sys/class/leds/blue/max_mix_brightness
+
+    # Display
+    chown system system /sys/devices/dsi_panel_driver/mplus_mode
+    chown system system /sys/devices/dsi_panel_driver/panel_id
+    chown system system /sys/devices/dsi_panel_driver/chargemon_exit
+
+    # System setting access from white balance app into fb.
+    chown system graphics /dev/graphics/fb0
+    chown system graphics /dev/graphics/fb1
+    chown system graphics /dev/graphics/fb2
+
+    # SONY: Update fsg/st1/st2 partitions if needed after fota
+    exec u:r:modem-updater:s0 root root system -- /vendor/bin/sony-modem-fota-updater
+
+    # Adjust parameters for dm-verity device
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+    # Transfer sensor json files
+    exec u:r:qti_init_shell:s0 -- /vendor/bin/sensor_json_transfer.sh
+
+on post-fs-data
+    # hvdcp_opti
+    start hvdcp_opti
+
+    # charge_service
+    start charge_service
+
+    # SONY: creat mount point for qns
+    mkdir /mnt/qns 0750 oem_2985 oem_2985
+    wait /dev/block/bootdevice/by-name/Qnovo
+    mount_all /vendor/etc/qns.fstab
+
+    # SONY: setup qns partition
+    chown oem_2985 oem_2985 /mnt/qns
+    chmod 0750 /mnt/qns
+    restorecon_recursive /mnt/qns
+
+    # qns
+    chown oem_2985 oem_2985 /sys/class/qns
+    chown oem_2985 oem_2985 /sys/class/qns/alarm
+    chown oem_2985 oem_2985 /sys/class/qns/charge_current
+    chown oem_2985 oem_2985 /sys/class/qns/charge_voltage
+    chown oem_2985 oem_2985 /sys/class/qns/charging_state
+    chown oem_2985 oem_2985 /sys/class/qns/current_now
+    chown oem_2985 oem_2985 /sys/class/qns/design
+    chown oem_2985 oem_2985 /sys/class/qns/fcc
+    chown oem_2985 oem_2985 /sys/class/qns/options
+    chown oem_2985 oem_2985 /sys/class/qns/soc
+    chown oem_2985 oem_2985 /sys/class/qns/temp
+    chown oem_2985 oem_2985 /sys/class/qns/voltage
+    chown oem_2985 oem_2985 /sys/class/qns/battery_type
+    start qns
+
+    # chargemon
+    exec /vendor/bin/chargemon
+
+
+    # SONY: Camera
+    chown cameraserver camera /dev/sony_camera0
+    chmod 0770 /dev/sony_camera0
+    chown cameraserver camera /dev/sony_camera1
+    chmod 0770 /dev/sony_camera1
+    mkdir /data/vendor/somc_camera 0770 cameraserver camera
+
+    # Tof sensor
+    chown cameraserver camera /dev/i2c-3
+    chmod 666 /dev/i2c-3
+    chown cameraserver camera /sys/devices/virtual/input/tof_sensor/tof_power_ctl
+    chmod 666 /sys/devices/virtual/input/tof_sensor/tof_power_ctl
+
+    # RGBC-IR sensor
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_Itime
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_all
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_auto_gain
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_blue
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_channel
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_clear
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_gain
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_green
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_persist
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_power_state
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_red
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_thres
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/als_thresh_deltaP
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/chip_id
+    chown cameraserver camera /sys/devices/virtual/input/rgbcir_sensor/chip_pow
+
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_Itime
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_auto_gain
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_channel
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_gain
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_persist
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_power_state
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_thres
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/als_thresh_deltaP
+    chmod 666 /sys/devices/virtual/input/rgbcir_sensor/chip_pow
+
+    # create directory for wfd
+    mkdir /data/wfd 0770 system system
+
+    # Create directory for font change support
+    exec u:r:font_selector_make_dir:s0 system -- /vendor/bin/font-selector-make-dir.sh
+
+    # create directory for widevine
+    mkdir /data/wv 0700 media media
+
+    # Fingerprint data folder
+    mkdir /data/fpc 0770 system system
+
+    # Create directory for hdcp-sdk
+    
+
+    # Create directories for preloads
+    mkdir /data/preloads 0775 system system
+    mkdir /data/preloads/file_cache 0775 system system
+    mkdir /data/preloads/file_cache/deletable-app 0775 system system
+
+on boot
+    chown system system /sys/class/leds/vibrator/play_mode
+    chown system system /sys/class/leds/vibrator/vmax_mv
+    chown system system /sys/class/leds/vibrator/wf_samp
+    chown system system /sys/class/leds/vibrator/wf_rep_count
+    chown system system /sys/class/leds/vibrator/wf_s_rep_count
+    chown system system /sys/class/leds/vibrator/lra_auto_mode
+    chown system system /sys/devices/virtual/water_detection/wdet/wdet_polling_restart
+    chmod 0660 /sys/devices/virtual/water_detection/wdet/wdet_polling_restart
+    chown system audio /sys/class/leds/vibrator/activate
+    chmod 0660 /sys/class/leds/vibrator/activate
+
+    write /proc/sys/vm/dirty_ratio 5
+    write /proc/sys/vm/dirty_background_ratio 1
+
+    # TODO: is the the correct location
+    start modem_switcher
+
+on early-boot
+    # Init selinux trap module (except for production build)
+    #exec /system/bin/setup_selinux_trap.sh
+    start mlog_qmi_service
+
+# Set bdi ratio to 1 for external sdcard
+on property:sys.boot_completed=1
+    write /sys/class/block/mmcblk0/bdi/max_ratio 1
+
+    # SONY: Enable wakeup irq module
+    write /sys/devices/platform/wakeup_debug.0/enable 1
+
+on verity-logging
+    exec u:r:slideshow:s0 -- /sbin/slideshow -t 7000 warning/verity_red_1 warning/verity_red_2
+
+# Set value in property to sysfs for SmartCharge
+on property:persist.service.battery.smt_chg=activate
+    write /sys/class/power_supply/battery/smart_charging_activation 1
+
+on property:persist.service.battery.smt_chg=charging_suspend
+    write /sys/class/power_supply/battery/smart_charging_interruption 1
+
+on property:persist.service.battery.smt_chg=charging_resume
+    write /sys/class/power_supply/battery/smart_charging_interruption 0
+
+on property:sys.shutdown.requested=*
+    write /sys/class/power_supply/battery/running_status 2
+    write /sys/class/power_supply/battery/uevent change
+
+# Set value in property to sysfs for WirelessCharge
+on persist.service.battery.wlc_supend_for_cam=1
+    write /sys/class/power_supply/wireless/wireless_suspend_for_dev1 1
+
+on persist.service.battery.wlc_supend_for_cam=0
+    write /sys/class/power_supply/wireless/wireless_suspend_for_dev1 0
+
+# Set value in property to sysfs for LRC mode
+on property:persist.service.battery.charge=0
+    write /sys/class/power_supply/battery/lrc_enable 0
+    write /sys/class/power_supply/battery/lrc_socmax 0
+    write /sys/class/power_supply/battery/lrc_socmin 0
+
+on property:persist.service.battery.charge=1
+    write /sys/class/power_supply/battery/lrc_socmax 60
+    write /sys/class/power_supply/battery/lrc_socmin 40
+    write /sys/class/power_supply/battery/lrc_enable 1
+
+on property:gsm.nitz.time=*
+    start wvnitzd
+
+on property:wlan.driver.status=ok
+    restorecon /sys/kernel/debug/wlan0/power_stats
+
+# SONY: TrimArea Daemon
+# Last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb)/128(kb))
+service tad /vendor/bin/tad /dev/block/bootdevice/by-name/TA 0,16
+    user oem_2997
+    group oem_2997 root
+    socket tad stream 0660 system oem_2993
+    class trimarea
+    seclabel u:r:tad:s0
+
+service wvkbd_installer /vendor/bin/wvkbd
+    class late_start
+    user system
+    group system
+    oneshot
+
+
+
+# Set value in property to sysfs for SuperStamina
+on property:sys.lcd_fpks=* && property:sys.backlight_on=1
+    write /sys/devices/dsi_panel_driver/fps_mode ${sys.lcd_fpks}
+
+service qns /vendor/bin/qns -d /mnt/qns -l /mnt/qns
+    user oem_2985
+    group oem_2985
+    socket qnsbsd stream 660 oem_2985 system
+    disabled
+
+# Config file updater
+service ota-updater /vendor/bin/ota-config-updater.sh
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+# set up symbolic links to proper configuration file
+service config-linker /vendor/bin/multi-cdf-symlinker.sh
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+# Note! that there is a dependency towards taimport property
+# the property is set immediatly after execution of taimport.
+on property:init.taimport.ready=true
+    mkdir /data/customization 0755 system system
+    mkdir /data/customization/ota-config 0755 system system
+    restorecon /data/customization
+    start config-linker
+
+# Modem Log QMI service
+service mlog_qmi_service /system/vendor/bin/mlog_qmi_service
+    user root
+    seclabel u:r:mlog_qmi_service:s0
+    disabled
+# SONY_END ( Change to vendor partition for mlog_qmi_service )
+
+# SONY: Start Memory Pressure Observer daemon
+service mpobserver /system/bin/mpobserver
+    class main
+    user root
+    writepid /dev/cpuset/system-background/tasks
+
+# Charge service
+service charge_service /vendor/bin/charge_service
+    user root
+    disabled
+    writepid /dev/cpuset/system-background/tasks
+
+# nitz Clock service
+service wvnitzd /vendor/bin/wvnitzd nitz
+    class main
+    user media
+    group media
+    oneshot
+    disabled
+
+# Cacao service
+service cacaoserver /system/bin/cacaoserver
+    class main
+    user cameraserver
+    group audio camera input drmrpc
+    ioprio rt 4
+    writepid /dev/cpuset/camera-daemon/tasks /dev/stune/top-app/tasks
+
+# SONY: Trigger modem-switcher to swap modem fs
+on property:persist.somc.cust.modem0.debug=*
+   start modem_switcher
+
+on property:persist.somc.cust.modem1.debug=*
+   start modem_switcher
+
+on property:persist.somc.cust.modem0=*
+   start modem_switcher
+
+on property:persist.somc.cust.modem1=*
+   start modem_switcher
+
+# TODO: improve the permissions here
+# Modem-switcher service
+service modem_switcher /vendor/bin/sony-modem-switcher
+    user root
+    group root system oem_2993
+    disabled
+    oneshot
+
+on property:ro.boot.verifiedbootstate=orange
+    setprop persist.service.adb.enable 1
+
+on property:vold.media_ready=1
+    #Remounting partitions here just in case vold restarts
+    mount_all /vendor/etc/qns.fstab

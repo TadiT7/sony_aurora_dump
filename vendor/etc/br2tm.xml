@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<somc_hdr>
+    <!-- algo_type values:
+        * 1: enable switch algo:  switch to nearby LUT(+1/-1) every time
+        * 2: disable switch algo: switch to corresponding LUT directly
+    -->
+    <algo_type>1</algo_type>
+    <switch_interval_ms>100</switch_interval_ms>
+    <switch_delay_ms>500</switch_delay_ms>
+
+    <modes>
+        <HDR10>
+            <mode lumi="100">SMH0_10</mode>
+            <mode lumi="110">SMH0_11</mode>
+            <mode lumi="120">SMH0_12</mode>
+            <mode lumi="130">SMH0_13</mode>
+            <mode lumi="140">SMH0_14</mode>
+            <mode lumi="150">SMH0_15</mode>
+            <mode lumi="160">SMH0_16</mode>
+            <mode lumi="170">SMH0_17</mode>
+            <mode lumi="190">SMH0_19</mode>
+            <mode lumi="210">SMH0_21</mode>
+            <mode lumi="230">SMH0_23</mode>
+            <mode lumi="250">SMH0_25</mode>
+            <mode lumi="270">SMH0_27</mode>
+            <mode lumi="290">SMH0_29</mode>
+            <mode lumi="310">SMH0_31</mode>
+            <mode lumi="330">SMH0_33</mode>
+            <mode lumi="360">SMH0_36</mode>
+            <mode lumi="390">SMH0_39</mode>
+            <mode lumi="420">SMH0_42</mode>
+            <mode lumi="460">SMH0_46</mode>
+            <mode lumi="500">SMH0_50</mode>
+            <mode lumi="550">SMH0_55</mode>
+            <mode lumi="600">SMH0_60</mode>
+            <mode lumi="650">SMH0_65</mode>
+            <mode lumi="700">SMH0_70</mode>
+        </HDR10>
+
+        <HLG>
+            <mode lumi="100">SMHG_10</mode>
+            <mode lumi="110">SMHG_11</mode>
+            <mode lumi="120">SMHG_12</mode>
+            <mode lumi="130">SMHG_13</mode>
+            <mode lumi="140">SMHG_14</mode>
+            <mode lumi="150">SMHG_15</mode>
+            <mode lumi="160">SMHG_16</mode>
+            <mode lumi="170">SMHG_17</mode>
+            <mode lumi="190">SMHG_19</mode>
+            <mode lumi="210">SMHG_21</mode>
+            <mode lumi="230">SMHG_23</mode>
+            <mode lumi="250">SMHG_25</mode>
+            <mode lumi="270">SMHG_27</mode>
+            <mode lumi="290">SMHG_29</mode>
+            <mode lumi="310">SMHG_31</mode>
+            <mode lumi="330">SMHG_33</mode>
+            <mode lumi="360">SMHG_36</mode>
+            <mode lumi="390">SMHG_39</mode>
+            <mode lumi="420">SMHG_42</mode>
+            <mode lumi="460">SMHG_46</mode>
+            <mode lumi="500">SMHG_50</mode>
+            <mode lumi="550">SMHG_55</mode>
+            <mode lumi="600">SMHG_60</mode>
+            <mode lumi="650">SMHG_65</mode>
+            <mode lumi="700">SMHG_70</mode>
+        </HLG>
+    </modes>
+
+</somc_hdr>

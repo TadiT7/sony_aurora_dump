@@ -1,0 +1,61 @@
+# Copyright (C) 2014 Sony Mobile Communications AB.
+# All rights, including trade secret rights, reserved.
+
+#
+# Sony DualShock 4 Wireless Controller
+#
+# Basic region type for key assignment, button A(cross) is assigned to ENTER
+# and button B(circle) is assigned to BACK.
+#
+
+type SPECIAL_FUNCTION
+
+### Gamepad buttons ###
+
+key BUTTON_A {
+    base:                               fallback DPAD_CENTER
+}
+
+key BUTTON_B {
+    base:                               fallback BACK
+}
+
+key BUTTON_X {
+    base:                               none
+}
+
+key BUTTON_Y {
+    base:                               none
+}
+
+key BUTTON_L1 {
+    base:                               none
+}
+
+key BUTTON_R1 {
+    base:                               none
+}
+
+key BUTTON_L2 {
+    base:                               none
+}
+
+key BUTTON_R2 {
+    base:                               none
+}
+
+key BUTTON_THUMBL {
+    base:                               none
+}
+
+key BUTTON_THUMBR {
+    base:                               none
+}
+
+key BUTTON_START {
+    base:                               none
+}
+
+key BUTTON_SELECT {
+    base:                               none
+}

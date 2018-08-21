@@ -1,0 +1,9 @@
+# Copyright (C) 2017 Sony Mobile Communications Inc.
+# All rights, including trade secret rights, reserved.
+#
+# This triggers the script for copying SIM-specific media content to the sdcard
+
+on property:persist.somc.cust.copy_customized_media=requested && property:vold.media_ready=1
+        && property:init.taimport.ready=true
+    exec - media_rw media_rw -- /vendor/bin/customized_media_copy.sh /oem/android-config/
+    setprop persist.somc.cust.copy_customized_media finished

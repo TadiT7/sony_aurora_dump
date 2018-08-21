@@ -1,0 +1,423 @@
+# Copyright (C) 2010 The Android Open Source Project.
+# Copyright (C) 2015 Sony Mobile Communications Inc.
+#
+# NOTE: This file contains code from:
+#     frameworks/base/data/keyboards/Generic.kcm
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# NOTE: This file has been modified by Sony Mobile Communications Inc.
+# Modifications are licensed under the License.
+
+
+#
+# Sony Bluetooth Keyboard(Swiss)
+# Model BKB50
+#
+
+type FULL
+
+map key 12 SLASH
+map key 21 Z
+map key 44 Y
+map key 53 MINUS
+map key 86 PLUS
+
+### ROW 1
+
+key ESCAPE {
+    base:                               fallback BACK
+    alt, meta:                          fallback HOME
+    ctrl:                               fallback MENU
+}
+
+# Non-printing key F1 FN:BRIGHTNESS_DOWN
+# Non-printing key F2 FN:BRIGHTNESS_UP
+# Non-printing key F3 FN:VOLUME_UP
+# Non-printing key F4 FN:VOLUME_DOWN
+# Non-printing key F5 FN:MEDIA_PREVIOUS
+# Non-printing key F6 FN:MEDIA_PLAY_PAUSE
+# Non-printing key F7 FN:MEDIA_NEXT
+# Non-printing key F8 FN:CTRL+A
+# Non-printing key F9 FN:CTRL+X
+# Non-printing key F10 FN:CTRL+C
+# Non-printing key F11 FN:CTRL+V
+# Non-printing key F12 FN:SEARCH
+# Non-printing key PROG_YELLOW
+# Non-printing key SYSRQ
+# Non-printing key POWER
+# Non-printing key FORWARD_DEL
+
+### ROW 2
+
+key GRAVE {
+    label:                              '\u00a7'
+    base:                               '\u00a7'
+    shift:                              '\u00b0'
+}
+
+key 1 {
+    label:                              '1'
+    base:                               '1'
+    shift:                              '+'
+    ralt:                               '\u00a6'
+}
+
+key 2 {
+    label:                              '2'
+    base:                               '2'
+    shift:                              '"'
+    ralt:                               '@'
+}
+
+key 3 {
+    label:                              '3'
+    base:                               '3'
+    shift:                              '*'
+    ralt:                               '#'
+}
+
+key 4 {
+    label:                              '4'
+    base:                               '4'
+    shift:                              '\u00e7'
+}
+
+key 5 {
+    label:                              '5'
+    base:                               '5'
+    shift:                              '%'
+}
+
+key 6 {
+    label:                              '6'
+    base:                               '6'
+    shift:                              '&'
+    ralt:                               '\u00ac'
+}
+
+key 7 {
+    label:                              '7'
+    base:                               '7'
+    shift:                              '/'
+    ralt:                               '\u007c'
+}
+
+key 8 {
+    label:                              '8'
+    base:                               '8'
+    shift:                              '('
+    ralt:                               '\u00a2'
+}
+
+key 9 {
+    label:                              '9'
+    base:                               '9'
+    shift:                              ')'
+}
+
+key 0 {
+    label:                              '0'
+    base:                               '0'
+    shift:                              '='
+}
+
+key SLASH {
+    label:                              '\''
+    base:                               '\''
+    shift:                              '?'
+    ralt:                               '\u0301'
+}
+
+key EQUALS {
+    label:                              '^'
+    base:                               '^'
+    shift:                              '\u0300'
+    ralt:                               '~'
+}
+
+# Non-printing key DEL
+
+### ROW 3
+
+key TAB {
+    label:                              '\t'
+    base:                               '\t'
+}
+
+key Q {
+    label:                              'Q'
+    base:                               'q'
+    shift, capslock:                    'Q'
+}
+
+key W {
+    label:                              'W'
+    base:                               'w'
+    shift, capslock:                    'W'
+}
+
+key E {
+    label:                              'E'
+    base:                               'e'
+    shift, capslock:                    'E'
+    ralt:                               '\u20ac'
+}
+
+key R {
+    label:                              'R'
+    base:                               'r'
+    shift, capslock:                    'R'
+}
+
+key T {
+    label:                              'T'
+    base:                               't'
+    shift, capslock:                    'T'
+}
+
+key Z {
+    label:                              'Z'
+    base:                               'z'
+    shift, capslock:                    'Z'
+}
+
+key U {
+    label:                              'U'
+    base:                               'u'
+    shift, capslock:                    'U'
+}
+
+key I {
+    label:                              'I'
+    base:                               'i'
+    shift, capslock:                    'I'
+}
+
+key O {
+    label:                              'O'
+    base:                               'o'
+    shift, capslock:                    'O'
+}
+
+key P {
+    label:                              'P'
+    base:                               'p'
+    shift, capslock:                    'P'
+}
+
+# German u-key
+key LEFT_BRACKET {
+    label:                              '\u00fc'
+    base:                               '\u00fc'
+    shift:                              '\u00e8'
+    capslock:                           '\u00dc'
+    capslock+shift:                     '\u00c8'
+    ralt:                               '['
+}
+
+key RIGHT_BRACKET {
+    label:                              '\u0308'
+    base:                               '\u0308'
+    shift:                              '!'
+    ralt:                               ']'
+}
+
+# Currency key
+key BACKSLASH {
+    label:                              '$'
+    base:                               '$'
+    shift:                              '\u00a3'
+    ralt:                               '}'
+}
+
+
+### ROW 4
+
+# Non-printing key CAPS_LOCK
+
+key A {
+    label:                              'A'
+    base:                               'a'
+    shift, capslock:                    'A'
+}
+
+key S {
+    label:                              'S'
+    base:                               's'
+    shift, capslock:                    'S'
+}
+
+key D {
+    label:                              'D'
+    base:                               'd'
+    shift, capslock:                    'D'
+}
+
+key F {
+    label:                              'F'
+    base:                               'f'
+    shift, capslock:                    'F'
+}
+
+key G {
+    label:                              'G'
+    base:                               'g'
+    shift, capslock:                    'G'
+}
+
+key H {
+    label:                              'H'
+    base:                               'h'
+    shift, capslock:                    'H'
+}
+
+key J {
+    label:                              'J'
+    base:                               'j'
+    shift, capslock:                    'J'
+}
+
+key K {
+    label:                              'K'
+    base:                               'k'
+    shift, capslock:                    'K'
+}
+
+key L {
+    label:                              'L'
+    base:                               'l'
+    shift, capslock:                    'L'
+}
+
+# ö-key
+key SEMICOLON {
+    label:                              '\u00f6'
+    base:                               '\u00f6'
+    shift:                              '\u00e9'
+    capslock:                           '\u00d6'
+    capslock+shift:                     '\u00c9'
+}
+
+# ä-key
+key APOSTROPHE {
+    label:                              '\u00e4'
+    base:                               '\u00e4'
+    shift:                              '\u00e0'
+    capslock:                           '\u00c4'
+    capslock+shift:                     '\u00c0'
+    ralt:                               '{'
+}
+
+key ENTER {
+    label:                              '\n'
+    base:                               '\n'
+}
+
+
+### ROW 5
+
+# Non-printing key SHIFT_LEFT
+
+key Y {
+    label:                              'Y'
+    base:                               'y'
+    shift, capslock:                    'Y'
+}
+
+key X {
+    label:                              'X'
+    base:                               'x'
+    shift, capslock:                    'X'
+}
+
+key C {
+    label:                              'C'
+    base:                               'c'
+    shift, capslock:                    'C'
+}
+
+key V {
+    label:                              'V'
+    base:                               'v'
+    shift, capslock:                    'V'
+}
+
+key B {
+    label:                              'B'
+    base:                               'b'
+    shift, capslock:                    'B'
+}
+
+key N {
+    label:                              'N'
+    base:                               'n'
+    shift, capslock:                    'N'
+}
+
+key M {
+    label:                              'M'
+    base:                               'm'
+    shift, capslock:                    'M'
+}
+
+key COMMA {
+    label:                              ','
+    base:                               ','
+    shift:                              ';'
+}
+
+key PERIOD {
+    label:                              '.'
+    base:                               '.'
+    shift:                              ':'
+}
+
+key MINUS {
+    label:                              '-'
+    base:                               '-'
+    shift:                              '_'
+}
+
+key PLUS {
+    label:                              '<'
+    base:                               '<'
+    shift:                              '>'
+    ralt:                               '\\'
+}
+
+# Non-printing key DPAD_UP FN:PAGE_UP
+# Non-printing key SHIFT_RIGHT
+
+### ROW 6
+
+# Non-printing key CTRL_LEFT
+# Keyboard internal key FN
+# Non-printing key  ALT_LEFT
+
+key SPACE {
+    label:                              ' '
+    base:                               ' '
+    alt, meta:                          fallback SEARCH
+    ctrl:                               fallback LANGUAGE_SWITCH
+}
+
+# Non-printing key  ALT_RIGHT
+# Non-printing key  BACK
+# Non-printing key  HOME
+# Non-printing key  APP_SWITCH
+
+# Non-printing key  DPAD_LEFT FN:MOVE_HOME
+# Non-printing key  DPAD_DOWN FN:PAGE_DOWN
+# Non-printing key  DPAD_RIGHT FN:MOVE_END
+

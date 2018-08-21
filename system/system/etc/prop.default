@@ -1,0 +1,23 @@
+##### Update ro.bootimage.build(.xxx) value #####
+ro.bootimage.build.date=Fri Jul 27 06:48:42 JST 2018
+ro.bootimage.build.date.utc=1532641722
+
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+ro.secure=1
+security.perf_harden=1
+ro.adb.secure=1
+ro.allow.mock.location=0
+ro.debuggable=0
+#
+# BOOTIMAGE_BUILD_PROPERTIES
+#
+persist.sys.usb.config=none
+#
+# VERSION_PROPERTIES
+#
+ro.semc.version.sw=1311-7853
+ro.semc.version.sw_revision=51.1.A.12.27
+ro.semc.version.sw_variant=GLOBAL-A1
+ro.semc.version.sw_type=user

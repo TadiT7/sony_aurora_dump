@@ -1,0 +1,14 @@
+on boot
+    
+
+
+on property:fsck.newfs=1
+    start fsckstore
+    setprop fsck.newfs 0
+
+service fsckstore /vendor/bin/sh /vendor/etc/fsckstore.sh /dev/fscklogs /mnt/idd/fsck
+   oneshot
+   disabled
+   user root
+   group root
+   seclabel u:r:fsckstore:s0

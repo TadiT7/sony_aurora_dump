@@ -1,0 +1,2 @@
+on post-fs-data
+    mkdir /mnt/tmp/clmcheck 0700 system system

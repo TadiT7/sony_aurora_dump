@@ -1,0 +1,6 @@
+######################## Customized property values #########################
+ro.product.locale=it-IT
+ro.telephony.default_network=9
+ro.cst.prm=1313-2373:R7A
+#############################################################################
+

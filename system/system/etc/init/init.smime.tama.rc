@@ -1,0 +1,6 @@
+# Copyright (C) 2017 Sony Mobile Communications Inc.
+# All rights, including trade secret rights, reserved.
+
+# Create smime keystore dir
+on post-fs-data
+    mkdir /data/smime 0770 root oem_2992

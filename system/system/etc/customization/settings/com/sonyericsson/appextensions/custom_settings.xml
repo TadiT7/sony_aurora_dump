@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings version="1">
+ <groups type="app-extension">
+  <group id="0">
+    <setting key="type" runtime="false">contactmethoddecorator</setting>
+    <setting key="package" runtime="false">com.sonyericsson.operator.feature.test</setting>
+    <setting key="class" runtime="false">com.sonyericsson.operator.feature.test.GroupIconProvider</setting>
+  </group>
+  <group id="1">
+    <setting key="type" runtime="false">tabdrawableprovider</setting>
+    <setting key="package" runtime="false">com.vodafone360.people</setting>
+    <setting key="class" runtime="false">com.sonyericsson.vf360.contacts.TabDrawableProvider</setting>
+  </group>
+  <group id="2">
+   <setting key="type" runtime="false">capabilitydiscoverer</setting>
+   <setting key="package" runtime="false">com.sonymobile.rcs</setting>
+   <setting key="class" runtime="false">com.sonymobile.rcs.extension.RcsCapabilityDiscoverer</setting>
+  </group>
+ </groups>
+</settings>
+

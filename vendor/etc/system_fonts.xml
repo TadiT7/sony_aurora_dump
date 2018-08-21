@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vendor System Fonts
+-->
+<familyset>
+    <family>
+        <nameset>
+            <name>sst</name>
+        </nameset>
+        <fileset>
+            <file>.SSTVietnamese-Roman.ttf</file>
+            <file>.SSTVietnamese-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <nameset>
+            <name>x-sst-ultralight</name>
+        </nameset>
+        <fileset>
+            <file>.SST-UltraLight.ttf</file>
+            <file>.SST-UltraLightItalic.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <nameset>
+            <name>x-sst-light</name>
+        </nameset>
+        <fileset>
+            <file>.SST-Light.ttf</file>
+            <file>.SST-LightItalic.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <nameset>
+            <name>x-sst-medium</name>
+        </nameset>
+        <fileset>
+            <file>.SST-Medium.ttf</file>
+            <file>.SST-MediumItalic.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <nameset>
+            <name>x-sst-heavy</name>
+        </nameset>
+        <fileset>
+            <file>.SST-Heavy.ttf</file>
+            <file>.SST-HeavyItalic.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <nameset>
+            <name>x-sst-condensed</name>
+        </nameset>
+        <fileset>
+            <file>.SST-Condensed.ttf</file>
+            <file>.SST-CondensedBd.ttf</file>
+        </fileset>
+    </family>
+</familyset>

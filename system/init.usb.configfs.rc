@@ -1,0 +1,3 @@
+## Move all the contents to /devices/somc/platform_name/file/init.sony.usb.rc.
+## To fix the AOSP swap issue.
+## Issue: JIML-49895

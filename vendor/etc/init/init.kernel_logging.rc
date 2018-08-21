@@ -1,0 +1,5 @@
+on property:sl.config.kl=enable
+    setprop logd.kernel true
+    setprop sl.config.kl disable
+    restart logd
+

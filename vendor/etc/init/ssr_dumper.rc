@@ -1,0 +1,23 @@
+on boot
+    # Init subsystem restart level script
+    
+    exec u:r:ssr_level:s0 -- /vendor/bin/sh /vendor/etc/init.ssr_level.sh "venus adsp slpi modem cdsp"
+
+    # Enable ramdumps from subsystems to dump
+    
+
+    #Enable BT crashdump on userdebug variant
+    
+
+service ssr_dumper /vendor/bin/ssr_dumper
+    class main
+    user root
+    group root system
+    seclabel u:r:ssr_dumper:s0
+
+service bt_ssr_dumper /vendor/bin/bt_ssr_dumper
+    class main
+    user root
+    group root system bluetooth
+
+

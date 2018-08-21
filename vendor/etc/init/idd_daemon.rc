@@ -1,0 +1,6 @@
+# SONY: IDD daemon
+service iddd /vendor/bin/iddd
+    class core
+    user oem_2987
+    group oem_2987 log inet oem_2993
+    writepid /dev/cpuset/system-background/tasks

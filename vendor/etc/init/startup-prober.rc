@@ -1,0 +1,13 @@
+on post-fs
+    # panel ID
+    chown system system /sys/devices/dsi_panel_driver/panel_id
+    chmod 0440 /sys/devices/dsi_panel_driver/panel_id
+
+on property:dev.bootcomplete=1
+   start startup-prober
+
+service startup-prober /vendor/bin/startup-prober
+    user root
+    oneshot
+    disabled
+    group oem_2993 drmrpc system oem_2996

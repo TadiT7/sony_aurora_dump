@@ -1,0 +1,50 @@
+# Copyright (c) 2017 Sony Mobile Communications Inc.
+#
+# product common configuration
+#
+
+on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ \
+        ssw49501 ssw_mon
+
+    insmod /vendor/lib/modules/${ro.np.nfc.ko}.ko
+
+# Touch boot
+on early-boot
+    write /sys/devices/virtual/input/siw_touch_input/init_late_session 1
+
+# Cover mode
+    chown system system /sys/devices/virtual/input/clearpad/cover_mode_enabled
+    chown system system /sys/devices/virtual/input/clearpad/cover_win_bottom
+    chown system system /sys/devices/virtual/input/clearpad/cover_win_left
+    chown system system /sys/devices/virtual/input/clearpad/cover_win_right
+    chown system system /sys/devices/virtual/input/clearpad/cover_win_top
+
+# Touch
+on property:sys.siw_ready=0 && property:dev.bootcomplete=1
+    setprop sys.siw_ready 1
+
+on property:persist.sys.touch.cover_mode_enabled=0 && property:sys.siw_ready=1
+    write /sys/devices/virtual/input/siw_touch_input/quick_cover_status 3
+
+on property:persist.sys.touch.cover_mode_enabled=1 && property:sys.siw_ready=1
+    write /sys/devices/virtual/input/siw_touch_input/quick_cover_status 2
+
+on property:persist.sys.touch.glove_mode=0 && property:sys.siw_ready=1
+    write /sys/devices/virtual/input/siw_touch_input/glove_status 0
+
+on property:persist.sys.touch.glove_mode=1 && property:sys.siw_ready=1
+    write /sys/devices/virtual/input/siw_touch_input/glove_status 1
+
+# Touch Cover
+on property:sys.cover_state=0 && property:sys.siw_ready=1 && property:sys.backlight_on=0
+    write /sys/devices/virtual/input/siw_touch_input/lpwg_notify "9 0 1 0 0"
+
+on property:sys.cover_state=0 && property:sys.siw_ready=1 && property:sys.backlight_on=1
+    write /sys/devices/virtual/input/siw_touch_input/lpwg_notify "9 0 1 1 0"
+
+on property:sys.cover_state=1 && property:sys.siw_ready=1 && property:sys.backlight_on=0
+    write /sys/devices/virtual/input/siw_touch_input/lpwg_notify "9 0 1 0 1"
+
+on property:sys.cover_state=1 && property:sys.siw_ready=1 && property:sys.backlight_on=1
+    write /sys/devices/virtual/input/siw_touch_input/lpwg_notify "9 0 1 1 1"

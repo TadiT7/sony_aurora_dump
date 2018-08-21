@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2016 Sony Mobile Communications Inc.
+    All rights, including trade secret rights, reserved.
+ -->
+<!--
+    An example of pre-grant list is following:
+
+      <exceptions>
+         <exception package="com.example.a">
+            <permission name="android.permission.BODY_SENSORS" fixed="false"/>
+         </exception>
+         <exception package="com.example.b">
+            <permission name="android.permission.BODY_SENSORS" fixed="true"/>
+            <permission name="android.permission.READ_CALENDAR" fixed="false"/>
+            <permission name="android.permission.WRITE_CALENDAR" fixed="false"/>
+         </exception>
+      </exceptions>
+
+
+    The xml format of pre-grant list is following:
+
+     - <exceptions>
+        - It represents list of <exception>
+        - It contains some <exception>
+
+     - <exception package="***">
+        - It represents a setting about one package that wanted to apply pre-grant processing
+        - It contains some <permission>
+
+        - [package] attribute represents the package name
+           Value : [string]
+
+     - <permission name="***" fixed="***">
+        - It represents a setting about one permission that is pre-granted for the package of
+          <exception>
+
+        - [name] attribute represents the permission name
+           Value : [string]
+
+        - [fixed] attribute represents a flag for systemFixed setting of the permission
+           Value : [true, false]
+
+           true set the permission systemFixed, false does not set the permission systemFixed.
+           In case of systemfixed is not defined does not set the permission systemFixed.
+
+
+    The pre-grant processing behavior in the above example is described following:
+
+     - Package com.example.a
+        - The following permission is pre-granted:
+           - android.permission.BODY_SENSORS   (Not set as systemFixed)
+
+          User can change the granting state of com.example.a's BODY_SENSORS permission in UI.
+          In this case, The following permission group can be changed in UI:
+           - Body Sensors
+
+     - Package com.example.b
+        - The following permission are pre-granted:
+           - android.permission.BODY_SENSORS   (Set as systemFixed)
+           - android.permission.READ_CALENDAR  (Not set as systemFixed)
+           - android.permission.WRITE_CALENDAR (Not set as systemFixed)
+
+          User can not change the granting state of com.example.b's BODY_SENSORS permission in UI.
+          And, User can change the granting state of com.example.b's READ_CALENDAR permission and
+          WRITE_CALENDAR permission in UI.
+          In this case, the following permission group can be changed in UI:
+           - Calendar
+ -->
+
+<exceptions>
+  <!-- For singtel and Globe -->
+  <exception package="com.LogiaGroup.LogiaDeck">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+
+  <!-- For Claro -->
+  <exception package="com.claroColombia.contenedor">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+
+  <!-- For docomo -->
+  <exception package="com.nttdocomo.android.osv">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.idmanager">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+  </exception>
+  <exception package="jp.co.nttdocomo.lcsapp">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="true"/>
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="true"/>
+  </exception>
+  <exception package="com.nttdocomo.android.wipe">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.applicationmanager">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.areamail">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="true"/>
+    <permission name="android.permission.RECEIVE_SMS" fixed="true"/>
+  </exception>
+  <exception package="jp.co.omronsoft.android.decoemojimanager_docomo">
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
+  </exception>
+  <exception package="jp.co.nttdocomo.saigaiban">
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.remotelock">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.dhome">
+    <permission name="android.permission.READ_CALL_LOG" fixed="false"/>
+    <permission name="android.permission.CALL_PHONE" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.iconcier">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.nttdocomo.android.phonemotion">
+    <permission name="android.permission.READ_CALL_LOG" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.RECORD_AUDIO" fixed="false"/>
+  </exception>
+
+  <!-- For kddi -->
+  <exception package="com.kddi.market">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.kddi.android.klop">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.kddi.android.ausharelink">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.READ_CONTACTS" fixed="false"/>
+  </exception>
+  <exception package="com.kddi.cs.app001">
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.kddi.disasterapp">
+    <permission name="android.permission.RECEIVE_SMS" fixed="true"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="true"/>
+  </exception>
+  <exception package="com.kddi.android.checker_android">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" fixed="false"/>
+  </exception>
+  <exception package="com.kddi.android.au_wifi_connect2">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.kddi.selfcare.client">
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.RECEIVE_WAP_PUSH" fixed="false"/>
+  </exception>
+
+  <!-- For Softbank -->
+  <exception package="com.android.cellbroadcastreceiver">
+    <permission name="android.permission.RECEIVE_SMS" fixed="true"/>
+  </exception>
+  <exception package="com.redbend.dmClient">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.RECEIVE_WAP_PUSH" fixed="false"/>
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+  </exception>
+  <exception package="jp.softbank.mb.tdrl">
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+  </exception>
+  <exception package="jp.softbank.mb.dmb">
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+  </exception>
+
+  <!-- For Telekom and T-Mobile -->
+  <exception package="de.telekom.tsc">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="de.telekom.mds.mbp">
+    <permission name="android.permission.SEND_SMS" fixed="false"/>
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.CALL_PHONE" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="pl.tmobile.panel">
+    <permission name="android.permission.SEND_SMS" fixed="false"/>
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="at.tmobile.android.myt">
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+  </exception>
+
+  <!-- For Telcel -->
+  <exception package="com.telcel.contenedor">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+  <exception package="com.speedymovil.wire">
+    <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" fixed="false"/>
+  </exception>
+
+  <!-- For Millicom -->
+  <exception package="com.dti.millicom">
+    <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+  </exception>
+</exceptions>
